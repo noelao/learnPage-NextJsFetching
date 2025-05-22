@@ -12,7 +12,12 @@ export default function Home() {
         height={38}
         priority
       />
-      <Link href={"/users-client"}>Sini sini</Link>
+      <div className="flex flex-col">
+        <Link href={"/users-client"}>Sini sini cliet</Link>
+        <Link href={"/users-server"}>Sini sini server</Link>
+        <Link href={"/posts-sequential"}>posts sequential</Link>
+        <Link href={"/user-parallel"}>user parallel</Link>
+      </div>
 
     </div>
   );
