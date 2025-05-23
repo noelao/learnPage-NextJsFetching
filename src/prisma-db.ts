@@ -1,0 +1,69 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+const sendBarang = async () => {
+    const count = await prisma.barang.count();
+    if(count === 0) {
+        await prisma.barang.createMany({
+            data: [
+                { title: "Barang A", price: 100, description: "Barang bekas" },
+                { title: "Barang B", price: 200, description: "Barang bekas" },
+                { title: "Barang C", price: 300, description: "Barang bekas" },
+            ],
+        });
+    }
+};
+
+sendBarang();
+
+export async function getBarang() {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    return prisma.barang.findMany();
+}
+
+export async function getBarangById(id: number) {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    return prisma.barang.findUnique({
+        where: { id },
+    });
+}
+
+export async function addBarang(
+    title: string,
+    price: number,
+    description: string
+) {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    return prisma.barang.create({
+        data: {
+            title,
+            price,
+            description,
+        },
+    });
+}
+
+export async function updateBarang(
+    id: number,
+    title: string,
+    price: number,
+    description: string
+) {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    return prisma.barang.update({
+        where: { id },
+        data: {
+            title,
+            price,
+            description,
+        },
+    });
+}
+
+export async function deleteBarang(id: number) {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    return prisma.barang.delete({
+        where: { id },
+    });
+}

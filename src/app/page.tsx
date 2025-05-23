@@ -16,7 +16,8 @@ export default function Home() {
         <Link href={"/users-client"}>Sini sini cliet</Link>
         <Link href={"/users-server"}>Sini sini server</Link>
         <Link href={"/posts-sequential"}>posts sequential</Link>
-        <Link href={"/user-parallel"}>user parallel</Link>
+        <Link href={"/user-parallel/2"}>user parallel</Link>
+        <Link href={"/barang-db"}>barang database</Link>
       </div>
 
     </div>
