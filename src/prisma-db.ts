@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "./generated/prisma";
 
 const prisma = new PrismaClient();
 
@@ -7,9 +7,9 @@ const sendBarang = async () => {
     if(count === 0) {
         await prisma.barang.createMany({
             data: [
-                { title: "Barang A", price: 100, description: "Barang bekas" },
-                { title: "Barang B", price: 200, description: "Barang bekas" },
-                { title: "Barang C", price: 300, description: "Barang bekas" },
+                { title: "Barang A", price: 1000, description: "Barang bekas" },
+                { title: "Barang B", price: 2000, description: "Barang bekas" },
+                { title: "Barang C", price: 3000, description: "Barang bekas" },
             ],
         });
     }

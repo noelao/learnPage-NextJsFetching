@@ -18,6 +18,8 @@ export default function Home() {
         <Link href={"/posts-sequential"}>posts sequential</Link>
         <Link href={"/user-parallel/2"}>user parallel</Link>
         <Link href={"/barang-db"}>barang database</Link>
+        <Link href={"/react-form"}>react form</Link>
+        <Link href={"/barang-db-create"}>barang-db-create server</Link>
       </div>
 
     </div>
