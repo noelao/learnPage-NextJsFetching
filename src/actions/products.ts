@@ -1,7 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { addBarang, updateBarang } from "@/prisma-db";
+import { addBarang, updateBarang, deleteBarang } from "@/prisma-db";
+import { revalidatePath } from "next/cache";
 
 export type Error = {
     title?: string;
@@ -35,8 +36,6 @@ export async function createBarang(prevState: FormState, formData: FormData){
     redirect("/barang-db");
 }
 
-
-
 export async function editBarang(id:number, prevState: FormState, formData: FormData){
     // const id = formData.get("id") as string;
     const title = formData.get("title") as string;
@@ -59,4 +58,9 @@ export async function editBarang(id:number, prevState: FormState, formData: Form
 
     await updateBarang(id ,title, parseInt(price), description)
     redirect("/barang-db");
+}
+
+export async function hapusBarang(id:number) {
+    await deleteBarang(id);
+    revalidatePath("/barang-db");
 }

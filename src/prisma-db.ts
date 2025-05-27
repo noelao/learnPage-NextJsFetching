@@ -17,9 +17,38 @@ const sendBarang = async () => {
 
 sendBarang();
 
-export async function getBarang() {
+export async function getBarang(query?: string) {
     await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    if (query) {
+        const orConditions = [
+            { title: { contains: query } },
+            { description: { contains: query } },
+        ];
+
+        const numericQuery = parseInt(query);
+        if (isNaN(numericQuery)) {
+            return prisma.barang.findMany({
+                where: {
+                    OR: orConditions,
+                },
+            });
+        } else {
+            return prisma.barang.findMany({
+                where: {
+                    OR: [
+                        { title: { contains: query } },
+                        { description: { contains: query } },
+                        { price: numericQuery },
+                    ]
+                },
+            });
+        }
+
+    }
+
     return prisma.barang.findMany();
+
 }
 
 export async function getBarangById(id: number) {
